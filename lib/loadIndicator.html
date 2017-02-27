@@ -1,0 +1,24 @@
+<style>
+
+    #loadIndicator {
+        padding: calc(50vh - 46px) calc(50vw - 46px);
+    }
+
+    #loadIndicator .loader {
+        border: 8px solid #ddd; /* Light grey */
+        border-top: 8px solid #49075e; /* UQ Purple */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: loaderSpin 2s linear infinite;
+    }
+
+    @keyframes loaderSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+</style>
+<div id="loadIndicator">
+    <p aria-label="Loading web site" class="loader"> </p>
+</div>

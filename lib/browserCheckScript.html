@@ -1,0 +1,89 @@
+<script type="text/javascript">
+
+  var vs = {i:10,f:40,o:30,s:7,c:40};
+  var $buoop = {
+    vs: vs,
+    api:4,
+    reminder: 168,                    // after how many hours should the message reappear, 0 = show all the time
+    reminderClosed: 168,              // if the user closes message it reappears after x hours
+    test: false,                      // true = always show the bar (for testing)
+    text: 'Your current browser is not on UQ Library\'s <a href=\"https://web.library.uq.edu.au/site-information/web-browser-compatibility\">list of supported browsers</a>. If you experience any problems with this site, please try using the site with a different browser, or <a href=\"http://browser-update.org/update.html\">upgrade your current browser</a> to the latest version. ',         // custom notification html text
+    newwindow: true,                  // open link in new window/tab
+    url: 'https://web.library.uq.edu.au/site-information/web-browser-compatibility' // the url to go to after clicking the notification
+  };
+
+  function $buo_f(){
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+
+  //(c)2017, MIT Style License <browser-update.org/LICENSE.txt>
+  //it is recommended to directly link to this file because we update the detection code
+
+  function getBrowserDetails() {
+    var n, t, ua = navigator.userAgent, donotnotify = false;
+    var names = {
+      i: 'Internet Explorer',
+      e: "Edge",
+      f: 'Firefox',
+      o: 'Opera',
+      s: 'Safari',
+      n: 'Netscape',
+      c: "Chrome",
+      a: "Android Browser",
+      y: "Yandex Browser",
+      v: "Vivaldi",
+      x: "Other"
+    };
+
+    function ignore(reason, pattern) {
+      if (RegExp(pattern, "i").test(ua))return reason;
+    }
+
+    var ig = ignore("bot", "bot|spider|googlebot|facebook|slurp|bingbot|google web preview|mediapartnersadsbot|AOLBuild|Baiduspider|DuckDuckBot|Teoma") || ignore("discontinued browser", "camino|flot|k-meleon|fennec|galeon|chromeframe|coolnovo") || ignore("complicated device browser", "SMART-TV|SmartTV") || ignore("niche browser", "Dorado|Whale|SamsungBrowser|MIDP|wii|UCBrowser|Chromium|Puffin|Opera Mini|maxthon|maxton|dolfin|dolphin|seamonkey|opera mini|netfront|moblin|maemo|arora|kazehakase|epiphany|konqueror|rekonq|symbian|webos|PaleMoon|QupZilla|Otter|Midori|qutebrowser") || ignore("mobilew without upgrade path or landing page", "iphone|ipod|ipad|kindle|silk|blackberry|bb10|RIM|PlayBook|meego|nokia") || ignore("android(chrome) web view", "; wv");
+    if (ig)return {n: "x", v: 0, t: "other browser", donotnotify: ig};
+    var mobile = (/iphone|ipod|ipad|android|mobile|phone|ios|iemobile/i.test(ua));
+    var pats = [["Trident.*rv:VV", "i"], ["Trident.VV", "io"], ["MSIE.VV", "i"], ["Edge.VV", "e"], ["Vivaldi.VV", "v"], ["OPR.VV", "o"], ["YaBrowser.VV", "y"], ["Chrome.VV", "c"], ["Firefox.VV", "f"], ["Version.VV.{0,10}Safari", "s"], ["Safari.VV", "so"], ["Opera.*Version.VV", "o"], ["Opera.VV", "o"], ["Netscape.VV", "n"]];
+    for (var i = 0; i < pats.length; i++)if (ua.match(new RegExp(pats[i][0].replace("VV", "(\\\\d+\\\\.?\\\\d?)")), "i")) {
+      n = pats[i][1];
+      break;
+    }
+    var v = parseFloat(RegExp.$1);
+    if (!n)return {n: "x", v: 0, t: names[n], mobile: mobile};
+    if (ua.indexOf('Android') > -1) {
+      var ver = parseInt((/WebKit\\/([0-9]+)/i.exec(ua) || 0)[1], 10) || 2000;
+      if (ver <= 534)return {n: "a", v: ver, t: names.a, mob: true, donotnotify: donotnotify, mobile: mobile};
+    }
+    if (/windows.nt.5.0|windows.nt.4.0|windows.95|windows.98|os x 10.2|os x 10.3|os x 10.4|os x 10.5|os x 10.6|os x 10.7/.test(ua)) donotnotify = "oldOS";
+    if (n == "f" && (Math.round(v) == 45 || Math.round(v) == 52)) donotnotify = "ESR";
+    if (n == "so") {
+      v = 4.0;
+      n = "s";
+    }
+    if (n == "i" && v == 7 && window.XDomainRequest) v = 8;
+    if (n == "io") {
+      n = "i";
+      if (v > 6) v = 11; else if (v > 5) v = 10; else if (v > 4) v = 9; else if (v > 3.1) v = 8; else if (v > 3) v = 7; else v = 9;
+    }
+    if (n == "e")return {n: "i", v: v, t: names[n] + " " + v, donotnotify: donotnotify, mobile: mobile};
+
+    return {n: n, v: v, t: names[n] + " " + v, donotnotify: donotnotify, mobile: mobile};
+
+  }
+
+  var browserInfo = getBrowserDetails();
+
+  if (browserInfo && browserInfo.v > vs[browserInfo.n]) {
+    if (document.getElementById('unsupportedBrowser'))
+    //hide unsupportedBrowser as soon as possible
+      document.getElementById('unsupportedBrowser').style.display = 'none';
+  } else {
+    if(document.getElementById('loadIndicator')) {
+      //hide loadIndicator if browser is not supported
+      document.getElementById('loadIndicator').style.display = 'none';
+    }
+  }
+</script>
