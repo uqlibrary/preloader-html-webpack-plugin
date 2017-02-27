@@ -2,14 +2,14 @@
 
   var vs = {i:10,f:40,o:30,s:7,c:40};
   var $buoop = {
-    vs: vs,
-    api:4,
-    reminder: 168,                    // after how many hours should the message reappear, 0 = show all the time
-    reminderClosed: 168,              // if the user closes message it reappears after x hours
-    test: false,                      // true = always show the bar (for testing)
-    text: 'Your current browser is not on UQ Library\'s <a href=\"https://web.library.uq.edu.au/site-information/web-browser-compatibility\">list of supported browsers</a>. If you experience any problems with this site, please try using the site with a different browser, or <a href=\"http://browser-update.org/update.html\">upgrade your current browser</a> to the latest version. ',         // custom notification html text
-    newwindow: true,                  // open link in new window/tab
-    url: 'https://web.library.uq.edu.au/site-information/web-browser-compatibility' // the url to go to after clicking the notification
+        vs: vs,
+        api:4,
+        reminder: 168,                    // after how many hours should the message reappear, 0 = show all the time
+        reminderClosed: 168,              // if the user closes message it reappears after x hours
+        test: false,                      // true = always show the bar (for testing)
+        text: 'Your current browser is not on UQ Library\'s <a href=\"https://web.library.uq.edu.au/site-information/web-browser-compatibility\">list of supported browsers</a>. If you experience any problems with this site, please try using the site with a different browser, or <a href=\"http://browser-update.org/update.html\">upgrade your current browser</a> to the latest version. ',         // custom notification html text
+        newwindow: true,                  // open link in new window/tab
+        url: 'https://web.library.uq.edu.au/site-information/web-browser-compatibility' // the url to go to after clicking the notification
   };
 
   function $buo_f(){
@@ -47,14 +47,14 @@
     if (ig)return {n: "x", v: 0, t: "other browser", donotnotify: ig};
     var mobile = (/iphone|ipod|ipad|android|mobile|phone|ios|iemobile/i.test(ua));
     var pats = [["Trident.*rv:VV", "i"], ["Trident.VV", "io"], ["MSIE.VV", "i"], ["Edge.VV", "e"], ["Vivaldi.VV", "v"], ["OPR.VV", "o"], ["YaBrowser.VV", "y"], ["Chrome.VV", "c"], ["Firefox.VV", "f"], ["Version.VV.{0,10}Safari", "s"], ["Safari.VV", "so"], ["Opera.*Version.VV", "o"], ["Opera.VV", "o"], ["Netscape.VV", "n"]];
-    for (var i = 0; i < pats.length; i++)if (ua.match(new RegExp(pats[i][0].replace("VV", "(\\\\d+\\\\.?\\\\d?)")), "i")) {
+    for (var i = 0; i < pats.length; i++)if (ua.match(new RegExp(pats[i][0].replace("VV", "(\\d+\\.?\\d?)")), "i")) {
       n = pats[i][1];
       break;
     }
     var v = parseFloat(RegExp.$1);
     if (!n)return {n: "x", v: 0, t: names[n], mobile: mobile};
     if (ua.indexOf('Android') > -1) {
-      var ver = parseInt((/WebKit\\/([0-9]+)/i.exec(ua) || 0)[1], 10) || 2000;
+      var ver = parseInt((/WebKit\/([0-9]+)/i.exec(ua) || 0)[1], 10) || 2000;
       if (ver <= 534)return {n: "a", v: ver, t: names.a, mob: true, donotnotify: donotnotify, mobile: mobile};
     }
     if (/windows.nt.5.0|windows.nt.4.0|windows.95|windows.98|os x 10.2|os x 10.3|os x 10.4|os x 10.5|os x 10.6|os x 10.7/.test(ua)) donotnotify = "oldOS";
@@ -77,10 +77,17 @@
   var browserInfo = getBrowserDetails();
 
   if (browserInfo && browserInfo.v > vs[browserInfo.n]) {
-    if (document.getElementById('unsupportedBrowser'))
-    //hide unsupportedBrowser as soon as possible
-      document.getElementById('unsupportedBrowser').style.display = 'none';
+    if(document.getElementById('loadIndicator')) {
+      //show loadIndicator if browser is supported
+      document.getElementById('loadIndicator').style.display = 'block';
+    }
   } else {
+
+    if (document.getElementById('unsupportedBrowser')) {
+      //show unsupportedBrowser as soon as possible
+      document.getElementById('unsupportedBrowser').style.display = 'block';
+    }
+
     if(document.getElementById('loadIndicator')) {
       //hide loadIndicator if browser is not supported
       document.getElementById('loadIndicator').style.display = 'none';

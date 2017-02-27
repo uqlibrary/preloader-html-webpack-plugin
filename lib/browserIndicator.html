@@ -26,7 +26,7 @@
     </div>
     <div class="card-content">
       <p>
-        Your current browser is not on UQ Library's <a href="https://www.library.uq.edu.au/site-information/web-browser-compatibility">list of supported browsers</a>.
+        Your current browser is not on UQ Library's <a href="https://web.library.uq.edu.au/site-information/web-browser-compatibility">list of supported browsers</a>.
         If you experience any problems with this site, please try using the site with a different browser, or <a href="http://browser-update.org/update.html">upgrade your current browser</a>
         to the latest version.
       </p>
@@ -35,8 +35,10 @@
 
   <style>
 
-    #preloader {
-      padding: 16px;
+    #preloader #unsupportedBrowser {
+      display: none;
+      position: relative;
+      z-index: 999999;
     }
 
     #preloader .card {
@@ -51,7 +53,7 @@
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
       border-bottom-left-radius: 2px;
-      margin-bottom: 32px;
+      margin: 16px;
     }
 
     #preloader .card-title {
@@ -64,8 +66,8 @@
 
     #preloader .card-content {
       padding: 16px;
-      font-size: 14px; color:
-            rgba(0, 0, 0, 0.870588);
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.870588);
     }
 
   </style>
