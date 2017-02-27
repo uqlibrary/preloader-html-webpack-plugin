@@ -23,6 +23,7 @@ function InjectPreloader(options) {
     
       #loadIndicator {
         padding: calc(50vh - 46px) calc(50vw - 46px);
+        display: none;
       }
     
       #loadIndicator .loader {
@@ -84,6 +85,7 @@ function InjectPreloader(options) {
       <style>
       
         #preloader #unsupportedBrowser {
+            display: none;
             position: relative;
             z-index: 999999;
         }
@@ -202,10 +204,20 @@ function InjectPreloader(options) {
       var browserInfo = getBrowserDetails();
         
       if (browserInfo && browserInfo.v > vs[browserInfo.n]) {
-        if (document.getElementById('unsupportedBrowser'))
+        if(document.getElementById('loadIndicator')) {
+          //hide loadIndicator if browser is not supported
+          document.getElementById('loadIndicator').style.display = 'block';
+        }
+        //if (document.getElementById('unsupportedBrowser'))
           //hide unsupportedBrowser as soon as possible
-          document.getElementById('unsupportedBrowser').style.display = 'none';
+          //document.getElementById('unsupportedBrowser').style.display = 'none';
       } else {
+      
+        if (document.getElementById('unsupportedBrowser')) {
+          //hide unsupportedBrowser as soon as possible
+          document.getElementById('unsupportedBrowser').style.display = 'block';
+        }
+          
         if(document.getElementById('loadIndicator')) {
           //hide loadIndicator if browser is not supported
           document.getElementById('loadIndicator').style.display = 'none';
