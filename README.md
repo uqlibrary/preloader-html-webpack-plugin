@@ -23,7 +23,23 @@ var webpackConfig = {
 };
 ```
 
-Your HTML entry page has to have placeholders for the hook to insert the code.
+Your HTML entry page has to have placeholders for the hook to insert the code, eg ```<!-- build:injectBrowserIndicator -->```
+Placeholders are configurable and can be customised as required.
+
+
+```html
+
+<body>
+
+<!-- build:injectBrowserIndicator -->
+
+<div id="root" class="layout-fill"><!-- build:injectLoadIndicator --></div>
+
+<!-- build:injectBrowserUpdateScript -->
+
+</body>
+
+```
 
 
 Configuration
