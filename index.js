@@ -51,7 +51,9 @@ InjectPreloader.prototype.apply = function (compiler) {
         callback(null, htmlPluginData);
 
       }).catch(function(reason) {
-        console.log(reason); // something went wrong...
+        reason.plugin = 'preloader-html-webpack-plugin';
+        console.error(reason);
+        callback(reason, htmlPluginData);
       });
 
     });

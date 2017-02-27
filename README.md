@@ -1,4 +1,7 @@
 # preloader-html-webpack-plugin
+
+[![Dependency Status](https://david-dm.org/uqlibrary/preloader-html-webpack-plugin.svg)](https://david-dm.org/uqlibrary/preloader-html-webpack-plugin)
+
 This is a a hook to [webpack](http://webpack.github.io/) plugin [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) which inserts standard browser checks, unsupported browser messages, and loading indicator.
 Default code does not have any dependencies, has it's own CSS to style messages, and uses vanilla JavaScript to check browser versions (suitable for any JS framework, library, etc).
 Default browser check will load `browser-update.org/update.min.js` from http://browser-update.org.
@@ -58,6 +61,19 @@ Allowed values are as follows:
 - `loadIndicatorTemplate`: an HTML template of a load graphic if default is not suitable. Default value is `./lib/loadIndicator.html` 
 - `browserCheckScriptTemplate`: a browser check script template if default is not suitable. Default value is `./lib/browserCheckScript.html` 
 
+
+*Example: set load indicator template to a custom template located in the project's public/ directory:*
+
+```javascript
+var webpackConfig = {
+  plugins: [
+    ...
+    new InjectPreloader({
+      loadIndicatorTemplate: resolve(__dirname, './public/customLoadIndicator.html')
+    })
+    ]
+  }
+```
 
 # License
 
