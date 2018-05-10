@@ -100,7 +100,7 @@
 
     var browserInfo = getBrowserDetails();
 
-    if (browserInfo && browserInfo.v > vs[browserInfo.n]) {
+    if (browserInfo && (browserInfo.n === 'x' || browserInfo.v > vs[browserInfo.n])) {
         if (document.getElementById('loadIndicator')) {
             //show loadIndicator if browser is supported
             document.getElementById('loadIndicator').style.display = 'block';
