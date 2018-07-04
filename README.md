@@ -5,7 +5,7 @@
 This is a a hook to [webpack](http://webpack.github.io/) plugin [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) which inserts standard browser checks, unsupported browser messages, and loading indicator.
 Default code does not have any dependencies, has it's own CSS to style messages, and uses vanilla JavaScript to check browser versions (suitable for any JS framework, library, etc).
 Default browser check will load `browser-update.org/update.min.js` from http://browser-update.org.
-Browser min requirements: `{i:10,f:40,o:30,s:7,c:40}`
+Browser min requirements: `{i:10,f:40,o:30,s:7,c:40,y:13}`
 
 Installation
 ------------
