@@ -1,6 +1,6 @@
 <script>
     function closeMessage() {
-        document.getElementById("unsupportedBrowser").style.display = "none";
+        document.getElementById("preloader").style.display = "none";
     }
 </script>
 
@@ -44,7 +44,9 @@
 
     #preloader #unsupportedBrowser {
       display: none;
-      position: relative;
+      position: fixed;
+        top: 0;
+        left: 0;
       z-index: 999999;
     }
 
