@@ -80,7 +80,9 @@
         nomessage: true,                  // Do not show a message if the browser is out of date, just call the onshow callback function
         text: 'Your current browser is not on UQ Library\'s <a href=\"https://web.library.uq.edu.au/site-information/web-browser-compatibility\">list of supported browsers</a>. If you experience any problems with this site, please try using the site with a different browser, or <a href=\"http://browser-update.org/update.html\">upgrade your current browser</a> to the latest version. ',         // custom notification html text
         newwindow: true,                  // open link in new window/tab
-        url: 'https://web.library.uq.edu.au/site-information/web-browser-compatibility' // the url to go to after clicking the notification
+        url: 'https://web.library.uq.edu.au/site-information/web-browser-compatibility', // the url to go to after clicking the notification
+        unsupported: true,
+        insecure: true
     };
 
     function $buo_f() {
