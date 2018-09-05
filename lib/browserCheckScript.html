@@ -70,13 +70,13 @@
         return {n: n, v: v, t: names[n] + " " + v, donotnotify: donotnotify, mobile: mobile};
     }
 
-    var vs = {i: 11, f: 58, o: 52, s: 10, c: 65, y: 17, uc: 12, vivaldi: 1.2};
+    var vs = {i: 11, e: -3, f: -3, o: -3, s: -3, c: -3, y: -3, uc: -3, vivaldi: -3};
     var $buoop = {
         vs: vs,
         api: 4,
         reminder: 24,                    // after how many hours should the message reappear, 0 = show all the time
         reminderClosed: 24,              // if the user closes message it reappears after x hours
-        test: true,                      // true = always show the bar (for testing)
+        test: false,                      // true = always show the bar (for testing)
         text: 'Your current browser is not on UQ Library\'s <a href=\"https://web.library.uq.edu.au/site-information/web-browser-compatibility\">list of supported browsers</a>. If you experience any problems with this site, please try using the site with a different browser, or <a href=\"http://browser-update.org/update.html\">upgrade your current browser</a> to the latest version. ',         // custom notification html text
         newwindow: true,                  // open link in new window/tab
         url: 'https://web.library.uq.edu.au/site-information/web-browser-compatibility' // the url to go to after clicking the notification
