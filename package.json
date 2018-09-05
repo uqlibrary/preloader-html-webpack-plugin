@@ -31,9 +31,7 @@
       "examples/*/dist/**/*.*"
     ]
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "dependencies": {
     "lodash": "^4.17.3",
     "rsvp": "^3.3.3"
