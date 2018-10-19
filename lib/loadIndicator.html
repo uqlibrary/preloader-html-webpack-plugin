@@ -1,13 +1,19 @@
 <style>
-
+    body {
+        background: linear-gradient(135deg, rgb(81,36,122) 55%,rgb(150,42,139) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#51247a", endColorstr="#962a8b",GradientType=1 );
+        overflow: hidden;
+    }
     #loadIndicator {
         padding: calc(50vh - 46px) calc(50vw - 46px);
         display: none;
     }
 
     #loadIndicator .loader {
-        border: 8px solid #ddd; /* Light grey */
-        border-top: 8px solid #49075e; /* UQ Purple */
+        border: 2px solid rgba(255,255,255,0.2);
+        border-top: 2px solid #FFFFFF;
+        border-right: 2px solid #FFFFFF;
+        border-left: 2px solid #FFFFFF;
         border-radius: 50%;
         width: 60px;
         height: 60px;
